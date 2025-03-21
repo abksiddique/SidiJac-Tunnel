@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  softether:
+    image: softethervpn/vpnserver:stable    # Using the stable SoftEther VPN image
+    container_name: softether-vpn-server    # Naming the container for easy management
+    cap_add:
+      - NET_ADMIN                           # Required capability for networking
+    restart: always                         # Ensure the container restarts if it crashes or the VPS reboots
+    ports:
+      - "53:53/udp"                         # DNS (if needed)
+      - "443:443/tcp"                       # HTTPS Admin Console (use https://your_vps_ip:443 to access)
+      - "992:992/tcp"                       # SoftEther VPN Management Port (for management connections)
+      - "1194:1194/udp"                     # OpenVPN (for OpenVPN clients to connect)
+      - "5555:5555/tcp"                     # VPN over HTTPS (SoftEther’s proprietary protocol for VPN connections)
+      - "500:500/udp"                       # IPSec (used for L2TP/IPsec VPN)
+      - "4500:4500/udp"                     # IPSec NAT traversal (for L2TP/IPsec VPN through NAT)
+      - "1701:1701/udp"                     # L2TP (Layer 2 Tunneling Protocol for VPN clients)
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"  # Sync container's time with the host's timezone
+      - "/etc/timezone:/etc/timezone:ro"    # Ensure proper timezone settings
+      - "./softether_data:/mnt"             # Persistent storage for configuration and data files
+      - "./softether_log:/root/server_log"  # Persistent storage for server logs
+      - "./softether_packetlog:/root/packet_log"  # Persistent storage for packet logs
+      - "./softether_securitylog:/root/security_log"  # Persistent storage for security logs
