@@ -1,2 +1,2 @@
 # SidiJac-Tunnel
-Dockerized SoftEther VPN by Siddique Abubakr Muntaka (UC PhD candidate) &amp; Dr. Jacques Buo Abdou. Enables SWARMI2P framework deployment via secure tunnels on restricted networks like institutional firewalls.
+A Dockerized SoftEther VPN server developed by Siddique Abubakr Muntaka, a PhD candidate at the University of Cincinnati, under the guidance of Dr. Jacques Buo Abdou, an experienced faculty member and researcher. This project creates secure tunnels for deploying the SWARMI2P framework in restricted networks, such as institutional or corporate firewalls, ensuring private and reliable access to the Garlic Network (Invisible Internet Project).
